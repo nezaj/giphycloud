@@ -1,0 +1,15 @@
+# Code output
+build/bundle*
+build/style*
+
+# Node Libraries
+node_modules/
+
+# npm
+npm-debug.log
+
+# Experiment code
+spike/
+
+# Notes for myself
+TODO.md
