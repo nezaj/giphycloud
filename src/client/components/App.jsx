@@ -53,7 +53,8 @@ class Intro extends Component {
   handleGiphySubmit = (e) => {
     e.preventDefault()
     let form = e.target
-    let tags = this.extractTags(form)
+    // We need to limit number of tags so we don't make a ton of api requests
+    let tags = this.extractTags(form).slice(0, 4)
     this.setState({ tags })
   }
 

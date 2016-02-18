@@ -1,6 +1,5 @@
 # Code output
-build/bundle*
-build/style*
+public/bundle*
 
 # Node Libraries
 node_modules/
