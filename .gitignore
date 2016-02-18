@@ -1,3 +1,6 @@
+# Code output
+public/bundle*
+
 # Node Libraries
 node_modules/
 
