@@ -22,7 +22,6 @@ export default class Mashup extends Component {
     let tags = this.cleanTags(this.props.tags)
     _.map(tags, t => {
       let url = this.buildGiphyUrl(t, public_key)
-      console.log(url)
       this.fetchGiphys(url)
     })
 
@@ -68,7 +67,7 @@ export default class Mashup extends Component {
 
   /* Builds giphy url for fetching images */
   buildGiphyUrl (query, apiKey, base = '') {
-    base = base || 'http://api.giphy.com/v1/gifs/search'
+    base = base || 'https://api.giphy.com/v1/gifs/search'
     let rating = 'pg'
     return `${base}?q=${query}&api_key=${apiKey}&rating=${rating}`
   }
