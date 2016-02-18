@@ -1,7 +1,7 @@
 const path = require('path')
 
 const PATHS = {
-  build: path.join(__dirname, 'build'),
+  build: path.join(__dirname, 'public'),
   client: path.join(__dirname, 'src', 'client'),
   server: path.join(__dirname, 'src', 'server'),
   test: path.join(__dirname, 'test')

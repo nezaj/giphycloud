@@ -4,8 +4,8 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import { Router, Route, browserHistory } from 'react-router'
-import request from 'superagent'
-import SoundCloudAudio from 'soundcloud-audio'
+
+import Mashup from './Mashup'
 
 export default class App extends Component {
   render () {
@@ -34,7 +34,7 @@ class Intro extends Component {
         : <Mashup tags={this.state.tags} url={this.state.url} />
 
     return (
-      <div>
+      <div className='container'>
         {page}
       </div>
     )
@@ -66,11 +66,18 @@ class Intro extends Component {
 }
 
 const GiphyForm = ({onSubmit}) => (
-  <div>
-    Enter some tags:<br/>
+  <div className='form-container'>
+    <p className='form-header'>
+      What kind of gifs would you like to see?
+    </p>
+    <div className='form-subheader'>
+      Enter a list of keywords seperated by commas<br/>
+      (e.g "Cute animal, puppies, aww")
+    </div>
     <form onSubmit={onSubmit}>
-      <input type='text' defaultValue='Dogs'/>
-      <input type='submit'/>
+      <input className='form-input' type='text'
+        defaultValue='Dancing, fireworks, tgif'/>
+      <input className='form-submit' type='submit'/>
     </form>
   </div>
 )
@@ -82,11 +89,13 @@ GiphyForm.propTypes = {
 const SoundForm = ({onSubmit}) => {
   let defaultURL = 'https://soundcloud.com/gryffinofficial/tove-lo-talking-body-gryffin-remix'
   return (
-    <div>
-      Enter a SoundCloud url:<br/>
+    <div className='form-container'>
+      <p className='form-header'>
+        Enter a SoundCloud url
+      </p>
       <form onSubmit={onSubmit}>
-        <input type='text' defaultValue={defaultURL} />
-        <input type='submit'/>
+        <input className='form-input' type='text' defaultValue={defaultURL} />
+        <input className='form-submit' type='submit'/>
       </form>
     </div>
   )
@@ -94,82 +103,4 @@ const SoundForm = ({onSubmit}) => {
 
 SoundForm.propTypes = {
   onSubmit: PropTypes.func.isRequired
-}
-
-class Mashup extends Component {
-  static propTypes = {
-    tags: PropTypes.array.isRequired,
-    url: PropTypes.string.isRequired
-  }
-
-  state = {
-    currentImage: '',
-    images: [],
-    trackURL: ''
-  }
-
-  /* ----------------- Life-Cycle Methods ----------------- */
-  componentDidMount () {
-    // Fetch Giphy
-    let public_key = 'dc6zaTOxFJmzC'
-    let giphyURL = this.buildGiphy(this.props.tags, public_key)
-    this.fetchGiphys(giphyURL)
-
-    // Fetch Soundcloud
-    let clientID = '3d6833fbab5bac6b610a01be3210800c'
-    this.player = SoundCloudAudio(clientID)
-    this.player.resolve(this.props.url, this.renderPlayer)
-
-    // Begin rotating gifs
-    this.imageInterval = setInterval(() => {
-      if (!this.state.images) { return }
-      let idx = _.random(0, this.state.images.length - 1)
-      this.setState({
-        currentImage: this.state.images[idx]
-      })
-    }, 1500)
-  }
-
-  componentWillUnmount () {
-    clearInterval(this.imageInterval)
-    this.player.stop()
-  }
-
-  render () {
-    return (
-      <div>
-        <img src={this.state.currentImage}
-          width='100%'
-          style={{ 'display': 'block' }}>
-        </img>
-      </div>
-    )
-  }
-
-  /* ------------------- Utility Methods ------------------ */
-  /* Builds giphy url for fetching images */
-  buildGiphy (tags, apiKey, base = '') {
-    base = base || 'http://api.giphy.com/v1/gifs/search'
-    // Giphy expects '+' instead of spaces for tags
-    // ['dogs', 'Cute dogs'] -> ['dogs', 'Cute+dogs']
-    let query = _.map(tags, t => t.trim().split(' ').join('+'))
-    let rating = 'pg'
-    return `${base}?q=${query}&api_key=${apiKey}&rating=${rating}`
-  }
-
-  fetchGiphys = (url) => {
-    request.get(url).end(this.setGiphys)
-  };
-
-  /* Renders html5 audio player for soundcloud url */
-  renderPlayer = (track) => {
-    this.player.play()
-  };
-
-  setGiphys = (err, res) => {
-    if (err) { console.log('ERROR loading from giphy!') }
-    let images = _.map(res.body.data, (e) => e['images']['original']['url'])
-    this.setState({ images })
-  };
-
 }

@@ -8,6 +8,9 @@
   },
   "author": "nezaj",
   "license": "ISC",
+  "scripts": {
+      "start": "make build && make prod-server"
+  },
   "bugs": {
     "url": "https://github.com/nezaj/giphycloud/issues"
   },

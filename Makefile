@@ -7,7 +7,7 @@ NODEMON = $(NODE_BIN)/nodemon
 
 .PHONY: \
 	build \
-	dev dev-client dev-server \
+	dev dev-client dev-server prod-server \
 	check lint test \
 	test-watch
 
@@ -29,6 +29,10 @@ dev-client:
 dev-server:
 	@echo "Starting backend dev-server..."
 	$(NODEMON) --exec $(NODE) --harmony -- src/server/index.js
+
+prod-server:
+	@echo "Starting prod server..."
+	$(NODE) --harmony -- src/server/index.js
 
 check:
 	$(MAKE) lint

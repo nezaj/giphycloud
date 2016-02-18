@@ -20,7 +20,7 @@ function main (opts) {
   app.use(cors())
 
   // Configure static directory
-  const staticDir = path.join(__dirname, '..', '..', 'build')
+  const staticDir = path.join(__dirname, '..', '..', 'public')
   app.use(express.static(staticDir))
 
   // parse application/x-www-form-urlencoded
@@ -31,6 +31,10 @@ function main (opts) {
 
   // Route middlewares
   app.use('/service', serviceRouter)
+
+  app.use('*', function (req, res) {
+    res.sendFile('index.html')
+  })
 
   /* --------- END Middlewares --------- */
 
