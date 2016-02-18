@@ -1,5 +1,6 @@
 ### Giphy-Cloud
-Giphy Soundloud mashup made with Express/React
+Giphy Soundcloud mashup made with Express/React.
+[See it live][GiphyCloud]
 
 ## Table of Contents
 * [Quickstart](#quickstart)
@@ -27,3 +28,5 @@ make test
 # Run lint and tests in one go
 make check
 ```
+
+[GiphyCloud]: https://giphy-cloud.herokuapp.com/
