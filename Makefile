@@ -23,7 +23,8 @@ dev-client:
 	$(NODE_BIN)/webpack-dev-server \
 		--progress --colors \
 		--hot --inline \
-		--content-base build
+		--content-base build \
+		--history-api-fallback
 
 dev-server:
 	@echo "Starting backend dev-server..."
