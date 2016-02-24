@@ -23,7 +23,7 @@ dev-client:
 	$(NODE_BIN)/webpack-dev-server \
 		--progress --colors \
 		--hot --inline \
-		--content-base build \
+		--content-base public \
 		--history-api-fallback
 
 dev-server:
