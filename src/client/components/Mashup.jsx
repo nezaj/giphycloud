@@ -18,7 +18,8 @@ export default class Mashup extends Component {
   /* ----------------- Life-Cycle Methods ----------------- */
   componentDidMount () {
     // Fetch Giphys
-    let public_key = 'dc6zaTOxFJmzC'
+    const public_key = 'bG7BYv3FqsvC7XD9vegcPuBRLzyMHSFB'
+
     let tags = this.cleanTags(this.props.tags)
     _.map(tags, t => {
       let url = this.buildGiphyUrl(t, public_key)
