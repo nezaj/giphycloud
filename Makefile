@@ -4,12 +4,14 @@ MAKE = make $(MAKEFLAGS)
 NODE_BIN = node_modules/.bin
 NODE = $(NODE_BIN)/babel-node
 NODEMON = $(NODE_BIN)/nodemon
+PUBLIC_DIR = public
 
 .PHONY: \
 	build \
 	dev dev-client dev-server prod-server \
 	check lint test \
-	test-watch
+	test-watch \
+	deploy
 
 build:
 	@echo "Building project..."
@@ -51,3 +53,13 @@ test:
 test-watch:
 	@echo "Watching tests..."
 	$(NODE_BIN)/mocha 'test/**/*.@(js|jsx)' --watch --reporter min
+
+deploy:
+	@echo "Deploying to gh-pages..."
+	$(MAKE) build
+	git checkout -B gh-pages
+	git add -f $(PUBLIC_DIR)
+	git commit -am "Rebuild website"
+	git filter-branch -f --prune-empty --subdirectory-filter $(PUBLIC_DIR)
+	git push -f origin gh-pages
+	git checkout -
