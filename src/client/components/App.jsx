@@ -3,14 +3,14 @@
  */
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, hashHistory } from 'react-router'
 
 import Mashup from './Mashup'
 
 export default class App extends Component {
   render () {
     return (
-      <Router history={browserHistory}>
+      <Router history={hashHistory}>
         <Route path='/' component={Intro} />
         <Route path='/mashup' component={Mashup} />
       </Router>
