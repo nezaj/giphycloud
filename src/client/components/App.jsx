@@ -77,7 +77,7 @@ const GiphyForm = ({onSubmit}) => (
     </div>
     <form onSubmit={onSubmit}>
       <input className='form-input' type='text'
-        defaultValue='nature, trees, fireworks'/>
+        defaultValue='cosmic, nature, ocean'/>
       <input className='form-submit' type='submit'/>
     </form>
   </div>
@@ -88,7 +88,7 @@ GiphyForm.propTypes = {
 }
 
 const SoundForm = ({onSubmit}) => {
-  let defaultURL = 'https://soundcloud.com/edm/deorro-ft-dycy-five-hours-dont-hold-me-back-edmcom-premiere'
+  let defaultURL = 'https://soundcloud.com/orestrama/dzeko-torres-2012-in-10-minutes'
   return (
     <div className='form-container'>
       <p className='form-header'>
