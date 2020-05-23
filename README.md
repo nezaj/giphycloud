@@ -29,4 +29,10 @@ make test
 make check
 ```
 
-[GiphyCloud]: https://giphy-cloud.herokuapp.com/
+### Deploy
+Previously this was hosted on heroku but now uses gh-pages (one less tool to install)
+```
+make deploy
+```
+
+[GiphyCloud]: http://nezaj.github.io/giphycloud/
