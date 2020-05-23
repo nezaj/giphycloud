@@ -43,7 +43,7 @@
     "react-dom": "0.14.6",
     "react-router": "2.0.0",
     "soundcloud-audio": "0.1.7",
-    "superagent": "1.7.2",
+    "superagent": "5.2.2",
     "webpack": "1.12.12",
     "webpack-dev-server": "1.14.1"
   }
